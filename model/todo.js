@@ -6,7 +6,9 @@ const TodoSchema = new mongoose.Schema({
     order: Number, //몇번 째 할 일 인지
 });
 // 데이터 조회시 생성되는 가상의 칼럼으로 반환.
-TodoSchema.virtual("todoId").get(()=>this._id.toHexString());
+TodoSchema.virtual("todoId").get(function(){
+    return this._id.toHexString();
+});
 TodoSchema.set("toJSON", {virtuals: true});
 
 module.exports = mongoose.model("Todo", TodoSchema);
